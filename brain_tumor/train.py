@@ -13,7 +13,7 @@ from sklearn.metrics import classification_report, confusion_matrix, accuracy_sc
 # Define constants
 INPUT_SIZE = 128
 BATCH_SIZE = 32
-EPOCHS = 2
+EPOCHS = 7
 MODEL_FILE = 'BrainTumorModel.h5'
 
 # Load and preprocess data
@@ -75,7 +75,11 @@ history = model.fit(datagen.flow(x_train, y_train, batch_size=BATCH_SIZE),
 model = keras.models.load_model(MODEL_FILE)
 y_pred = (model.predict(x_test) > 0.5).astype(int)
 
-print(accuracy_score(y_test, y_pred))
-print(confusion_matrix(y_test, y_pred))
-print(classification_report(y_test, y_pred))
+
+accuracy = accuracy_score(y_test, y_pred)
+print(accuracy)
+confusion_Matrix =confusion_matrix(y_test, y_pred)
+print(confusion_Matrix)
+Report = classification_report(y_test, y_pred)
+print(Report)
 
